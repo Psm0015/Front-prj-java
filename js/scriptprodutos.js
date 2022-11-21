@@ -14,7 +14,7 @@ function listar(){
             //txt += "Id: "+i.id+"<br>"
             txt += "<tr><td>"+i.nome+"</td>"
             txt += "<td>"+i.descricao+" </td>"
-            txt += "<td>"+i.valor+" </td>"
+            txt += "<td>"+i.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })+" </td>"
             txt += "<td><input type='button' value='Editar' onclick='editar("+p+")' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modaleditar'>   "
             txt += "<input type='button' value='Apagar' onclick='apagar("+p+")' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalapagar'></td></tr>"
 
