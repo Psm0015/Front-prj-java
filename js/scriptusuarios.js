@@ -32,7 +32,12 @@ function incluir(){
     ajax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     ajax.send(JSON.stringify(usuario));
     ajax.onload = function(){
+        if(this.status == 200){
+            alertasucesso('Usuário inserido com <strong>Sucesso!</strong>');
+        }
         console.log(this.responseText);
+        document.getElementById("addnome").value='';
+        document.getElementById("addemail").value='';
         listar();
     }
 }
@@ -51,6 +56,9 @@ function editarconfirm(){
     ajax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     ajax.send(JSON.stringify(useradd));
     ajax.onload = function(){
+        if(this.status == 200){
+            alertasucesso('Usuário editado com <strong>Sucesso!</strong>');
+        }
         listar();
     }
 }
@@ -64,7 +72,13 @@ function apagarconfirm(){
     ajax.open("DELETE","https://pedro-mota-qua209050.herokuapp.com/api/usuario/"+idpg);
     ajax.send();
     ajax.onload = function(){
-        alert(this.responseText);
+        if(this.status == 200){
+            alertasucesso('Usuário apagado com <strong>Sucesso!</strong>');
+        }
         listar();
     }
+}
+function alertasucesso(msg){
+    document.getElementById("alerta").innerHTML='<div class="alert alert-success">'+msg+'</div>'
+    setTimeout(function(){document.getElementById("alerta").innerHTML=''},3000)
 }

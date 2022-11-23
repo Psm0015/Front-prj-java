@@ -32,6 +32,12 @@ function incluir(){
     ajax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     ajax.send(JSON.stringify(produto));
     ajax.onload = function(){
+        document.getElementById("addnome").value =''
+        document.getElementById("adddesc").value=''
+        document.getElementById("addvalor").value=''
+        if(this.status == 200){
+            alertasucesso('Produto inserido com <strong>Sucesso!</strong>');
+        }
         listar()
     }
 }
@@ -52,6 +58,9 @@ function editarconfirm(){
     ajax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     ajax.send(JSON.stringify(pred));
     ajax.onload = function(){
+        if(this.status == 200){
+            alertasucesso('Produto editado com <strong>Sucesso!</strong>');
+        }
         listar();
     }
 }
@@ -67,7 +76,13 @@ function apagarconfirm(){
     ajax.open("DELETE","https://pedro-mota-qua209050.herokuapp.com/api/produto/"+idApgr);
     ajax.send();
     ajax.onload = function(){
-        alert(this.responseText);
+        if(this.status == 200){
+            alertasucesso('Produto apagado com <strong>Sucesso!</strong>');
+        }
         listar();
     }
+}
+function alertasucesso(msg){
+    document.getElementById("alerta").innerHTML='<div class="alert alert-success">'+msg+'</div>'
+    setTimeout(function(){document.getElementById("alerta").innerHTML=''},3000)
 }
