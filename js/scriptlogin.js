@@ -10,7 +10,7 @@ function login(){
             validacao=document.getElementById("validacao");
             validacao.style = "color: #198754";
             validacao.innerHTML = "Usuário Autenticado com sucesso. Aguarde..."
-            setTimeout(function(){window.location.href = "http://127.0.0.1:5500/produtos.html";}, 500)
+            setTimeout(function(){window.location.href = "produtos.html";}, 500)
         } else if(this.status == 401){
             validacao.style = "color: red";
             validacao.innerHTML = "Usuário ou senha incorreto(s)!"
