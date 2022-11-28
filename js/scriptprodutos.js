@@ -1,26 +1,33 @@
 ajax = new XMLHttpRequest();
 var prList;
+token=sessionStorage.getItem('token');
 listar()
 function listar(){
     ajax.open("GET","http://localhost:8080/api/produto/");
+    ajax.setRequestHeader("Authorization", "Bearer "+token);
     ajax.send();
     ajax.onload = function(){
-        prList=this.responseText;
-        prList=JSON.parse(prList);
-        //console.log(prList)
-        txt = " "
-        p = 0;
-        for(const i of prList){
-            //txt += "Id: "+i.id+"<br>"
-            txt += "<tr><td>"+i.nome+"</td>"
-            txt += "<td>"+i.descricao+" </td>"
-            txt += "<td>"+i.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })+" </td>"
-            txt += "<td><input type='button' value='Editar' onclick='editar("+p+")' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modaleditar'>   "
-            txt += "<input type='button' value='Apagar' onclick='apagar("+p+")' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalapagar'></td></tr>"
+        if(this.status == 200){
+            prList=this.responseText;
+            prList=JSON.parse(prList);
+            //console.log(prList)
+            txt = " "
+            p = 0;
+            for(const i of prList){
+                //txt += "Id: "+i.id+"<br>"
+                txt += "<tr><td>"+i.nome+"</td>"
+                txt += "<td>"+i.descricao+" </td>"
+                txt += "<td>"+i.valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })+" </td>"
+                txt += "<td><input type='button' value='Editar' onclick='editar("+p+")' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modaleditar'>   "
+                txt += "<input type='button' value='Apagar' onclick='apagar("+p+")' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalapagar'></td></tr>"
 
-            p++
+                p++
+            }
+            document.getElementById("ListaProdutos").innerHTML = txt;
+        }else if((this.status == 403)){
+            window.location.href ="index.html";
         }
-        document.getElementById("ListaProdutos").innerHTML = txt;
+        
     }
 }
 function incluir(){
@@ -29,6 +36,7 @@ function incluir(){
     produto.descricao = document.getElementById("adddesc").value;
     produto.valor = document.getElementById("addvalor").value;
     ajax.open("POST","http://localhost:8080/api/produto/");
+    ajax.setRequestHeader("Authorization", "Bearer "+token);
     ajax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     ajax.send(JSON.stringify(produto));
     ajax.onload = function(){
@@ -55,6 +63,7 @@ function editarconfirm(){
     pred.descricao = document.getElementById("desced").value;
     pred.valor = document.getElementById("valored").value;
     ajax.open("PUT","http://localhost:8080/api/produto/");
+    ajax.setRequestHeader("Authorization", "Bearer "+token);
     ajax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     ajax.send(JSON.stringify(pred));
     ajax.onload = function(){
@@ -74,6 +83,7 @@ function apagar(p){
 function apagarconfirm(){
     idApgr=document.getElementById("idapgr").value
     ajax.open("DELETE","http://localhost:8080/api/produto/"+idApgr);
+    ajax.setRequestHeader("Authorization", "Bearer "+token);
     ajax.send();
     ajax.onload = function(){
         if(this.status == 200){
@@ -85,4 +95,7 @@ function apagarconfirm(){
 function alertasucesso(msg){
     document.getElementById("alerta").innerHTML='<div class="alert alert-success">'+msg+'</div>'
     setTimeout(function(){document.getElementById("alerta").innerHTML=''},3000)
+}
+function sair(){
+    sessionStorage.setItem('token', '');
 }

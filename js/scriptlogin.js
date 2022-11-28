@@ -1,17 +1,25 @@
 ajax = new XMLHttpRequest();
 function login(){
-    userlogin = document.getElementById("login").value;
-    senhalogin = document.getElementById("loginsenha").value;
-    ajax.open("GET","http://localhost:8080/api/usuario/login?login="+userlogin+"&password="+senhalogin);
-    ajax.send();
+    usuario=document.getElementById("login").value;
+    senha=document.getElementById("senha").value;
+    const login = JSON.stringify({
+        "login": usuario,
+        "password": senha
+    });
+
+    ajax.open("POST", "http://localhost:8080/login");
+    ajax.setRequestHeader("Content-Type", "application/json");
+
+    ajax.send(login);
     ajax.onload = function(){
+        validacao=document.getElementById("validacao");
         if(this.status == 200){
-            document.getElementById("modallogin");
-            validacao=document.getElementById("validacao");
-            validacao.style = "color: #198754";
-            validacao.innerHTML = "Usuário Autenticado com sucesso. Aguarde..."
-            setTimeout(function(){window.location.href = "produtos.html";}, 500)
-        } else if(this.status == 401){
+            console.log(this.responseText);
+            validacao.innerHTML = ""
+            sessionStorage.setItem('token', this.responseText);
+            window.location.href = "usuarios.html";
+        }else if(this.status == 403){
+            sessionStorage.setItem('token', '');
             validacao.style = "color: red";
             validacao.innerHTML = "Usuário ou senha incorreto(s)!"
         }

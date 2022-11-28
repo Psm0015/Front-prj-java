@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,45 +7,43 @@
     <link rel="stylesheet" href="css/Style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Front-end de API Usuários</title>
+    <title>Login</title>
 </head>
-
 <body>
-  
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <div class="container-fluid">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" href="index.html">Usuários</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="produtos.html">Produtos</a>
-                </li>
-            </ul>
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <div style="cursor: pointer;" class="nav-link" data-bs-toggle='modal' data-bs-target='#modallogin'>Login</div>
-              </li>
-            </ul>
+    <section>
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card shadow-2-strong" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+      
+                  <h3 class="mb-5">Login</h3>
+      
+                  <div class="form-outline mb-4">
+                    <input type="email" id="login" class="form-control form-control-lg" />
+                    <label class="form-label" for="login">Usuario</label>
+                  </div>
+      
+                  <div class="form-outline mb-4">
+                    <input type="password" id="senha" class="form-control form-control-lg" />
+                    <label class="form-label" for="senha">Senha</label>
+                  </div>
+      
+                  <div class="form-check d-flex justify-content-start mb-4">
+                    <input class="form-check-input" type="checkbox" value="" id="form1Example3" />
+                    <label class="form-check-label" for="form1Example3"> Lembrar Senha </label>
+                  </div>
+      
+                  <button onclick="login()" class="btn btn-primary btn-lg btn-block" type="submit">Entrar</button>
+                  <div id="validacao"></div>
+      
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-  </nav>
-  <div id="alerta"></div>
-  <div class="container">
-      <br>
-        
-      <br>
-      <table class="table table-striped">
-          <tr>
-              <th>LOGIN:</th>
-              <th>NOME:</th>
-              <th>EMAIL:</th>
-              <th><input type="button" value="+" class="btn btn-info" data-bs-toggle='modal' data-bs-target='#modalnovo'></th>
-          </tr>
-          <tbody id="ListaUsers">
-
-          </tbody>
-      </table>
-      <footer class="py-3 my-4">
+      </section>
+    <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
           <li class="nav-item"><a href="https://www.instagram.com/peedroomota/" class="nav-link px-2 text-muted" target="_blank"><i class="fa fa-instagram fa-2xl" aria-hidden="true"></i></a></li>
           <li class="nav-item"><a href="https://github.com/Psm0015" class="nav-link px-2 text-muted" target="_blank"><i class="fa-brands fa-github fa-2xl"></i></a></li>
@@ -54,147 +51,9 @@
           <li class="nav-item"><a href="https://www.linkedin.com/in/pedro-santos-da-mota-235314222/" class="nav-link px-2 text-muted" target="_blank"><i class="fa-brands fa-linkedin fa-2xl"></i></a></li>
         </ul>
         <p class="text-center text-muted">&copy; 2022 Pedro Mota, Student</p>
-      </footer>
-  </div>
-  <div class="modal" id="modaleditar">
-        <!--MODAL DE EDITAR-->
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-      
-            <div class="modal-header">
-              <h4 class="modal-title">Editar Usuário</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-      
-            <div class="modal-body">
-
-                <input type="hidden" placeholder="" id="ided">
-
-                <label for="nomeed">Login:</label>
-                <input class="form-control" type="text" placeholder="Seu Login" id="logined">
-        
-                <label for="nomeed">Nome:</label>
-                <input class="form-control" type="text" placeholder="Seu Nome" id="nomeed">
-        
-                <label for="emailed">Email:</label>
-                <input class="form-control" type="text" placeholder="email@dominio.com" id="emailed"><br>
-
-                <label for="edsenha">Senha:</label>
-                <input class="form-control" type="password" placeholder="Sua senha" id="edsenha"> <div id="veredsenha" onclick="ver('edsenha')"><i class="fa-solid fa-eye"></i></div><br>
-
-            </div>
-      
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-              <input type="button" value="Salvar" onclick="editarconfirm()" class="btn btn-primary" data-bs-dismiss="modal">
-            </div>
-      
-          </div>
-        </div>
-  </div>
-  <div class="modal" id="modalapagar">
-        <!--MODAL DE APAGAR-->
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-      
-            <div class="modal-header">
-              <h4 class="modal-title">Apagar Usuário</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-      
-            <div class="modal-body">
-
-                <input type="hidden" placeholder="" id="idapgr">
-
-                <div class="" id="nomeapgr"></div>
-        
-                <div class="" id="emailapgr"></div>
-
-            </div>
-      
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
-              <input type="button" value="Apagar" onclick="apagarconfirm()" class="btn btn-primary" data-bs-dismiss="modal">
-            </div>
-      
-          </div>
-        </div>
-  </div>
-  <div class="modal" id="modalnovo">
-        <!--MODAL DE NOVO-->
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-      
-            <div class="modal-header">
-              <h4 class="modal-title">Novo Usuário</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-      
-            <div class="modal-body">
-
-                <label for="addlogin">Login:</label>
-                <input class="form-control" type="text" placeholder="Seu Login" id="addlogin">
-
-                <label for="addnome">Nome:</label>
-                <input class="form-control" type="text" placeholder="Seu Nome" id="addnome">
-        
-                <label for="addemail">Email:</label>
-                <input class="form-control" type="text" placeholder="email@dominio.com" id="addemail">
-        
-                <label for="addsenha">Senha:</label>
-                <input class="form-control" type="password" placeholder="Sua senha" id="addsenha"> <div id="veraddsenha" onclick="ver('addsenha')"><i class="fa-solid fa-eye"></i></div><br>
-
-            </div>
-      
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
-              <input type="button" value="Adicionar" onclick="cadastrar()" class="btn btn-primary" data-bs-dismiss="modal">
-            </div>
-      
-          </div>
-        </div>
-  </div>
-  <div class="modal" id="modallogin">
-        <!--MODAL DE LOGIN-->
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-      
-            <div class="modal-header">
-              <h4 class="modal-title">Novo Usuário</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-      
-            <div class="modal-body was-validated">
-
-                <div>
-                  <label for="login">Usuário:</label>
-                  <input class="form-control" type="text" placeholder="Seu Usuario" id="login" name="login" required>
-                  <div class="valid-feedback">Válido.</div>
-                  <div class="invalid-feedback">Por favor, preencha o campo!.</div>
-                </div>
-        
-                <div>
-                  <label for="loginsenha">Senha:</label>
-                  <input class="form-control" type="password" placeholder="Sua senha" id="loginsenha" name="loginsenha" required>
-                  <div id="verloginsenha" onclick="ver('loginsenha')"><i class="fa-solid fa-eye"></i></div><br>
-                </div>
-                <div id="validacao"></div>
-            </div>
-                
-      
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
-              <input type="button" value="Login" onclick="login()" class="btn btn-primary">
-            </div>
-      
-          </div>
-        </div>
-  </div>
-    
+    </footer>
 </body>
-<script src="https://kit.fontawesome.com/658c970e09.js" crossorigin="anonymous"></script>
-<script src="js/scriptusuarios.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/scriptlogin.js"></script>
-
+<script src="https://kit.fontawesome.com/658c970e09.js" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
 </html>

@@ -1,27 +1,32 @@
 ajax = new XMLHttpRequest();
 var userList;
+token=sessionStorage.getItem('token');
+console.log(token);
 function listar(){
     ajax.open("GET","http://localhost:8080/api/usuario/");
+    ajax.setRequestHeader("Authorization", "Bearer "+token);
     ajax.send();
     ajax.onload = function(){
-    userList=this.responseText;
-    userList=JSON.parse(userList);
-
-    document.getElementById("ListaUsers").innerHTML = "Lista de pessoas <br>";
-    txt = " "
-    u = 0;
-    for(const i of userList){
-        //txt += "Id: "+i.id+"<br>"
-        txt += "<tr><td>"+i.login+"</td>"
-        txt += "<td>"+i.nome+"</td>"
-        txt += "<td>"+i.email+" </td>"
-        txt += "<td><input type='button' value='Editar' onclick='editar("+u+")' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modaleditar'>   "
-        txt += "<input type='button' value='Apagar' onclick='apagar("+u+")' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalapagar'></td></tr>"
+        if(this.status == 200){
+            userList=this.responseText;
+            userList=JSON.parse(userList);
+            txt = " "
+            u = 0;
+            for(const i of userList){
+                //txt += "Id: "+i.id+"<br>"
+                txt += "<tr><td>"+i.login+"</td>"
+                txt += "<td>"+i.nome+"</td>"
+                txt += "<td>"+i.email+" </td>"
+                txt += "<td><input type='button' value='Editar' onclick='editar("+u+")' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modaleditar'>   "
+                txt += "<input type='button' value='Apagar' onclick='apagar("+u+")' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalapagar'></td></tr>"
         
         
-        u++
-    }
-    document.getElementById("ListaUsers").innerHTML = txt
+                u++
+            }
+            document.getElementById("ListaUsers").innerHTML = txt
+        }else if((this.status == 403)){
+            window.location.href ="index.html";
+        }
     }
 }
 listar();
@@ -33,6 +38,7 @@ function cadastrar(){
     usuario.password = document.getElementById("addsenha").value;
     ajax.open("POST","http://localhost:8080/api/usuario/");
     ajax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    ajax.setRequestHeader("Authorization", "Bearer "+token);
     ajax.send(JSON.stringify(usuario));
     ajax.onload = function(){
         if(this.status == 200){
@@ -59,6 +65,7 @@ function editarconfirm(){
     useradd.password = document.getElementById("edsenha").value;
     ajax.open("POST","http://localhost:8080/api/usuario/");
     ajax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    ajax.setRequestHeader("Authorization", "Bearer "+token);
     ajax.send(JSON.stringify(useradd));
     ajax.onload = function(){
         if(this.status == 200){
@@ -75,6 +82,7 @@ function apagar(u){
 }
 function apagarconfirm(){
     ajax.open("DELETE","http://localhost:8080/api/usuario/"+idpg);
+    ajax.setRequestHeader("Authorization", "Bearer "+token);
     ajax.send();
     ajax.onload = function(){
         if(this.status == 200){
@@ -98,4 +106,7 @@ function ver(senhaid){
         senhacamp.type = 'password'
     }
     
+}
+function sair(){
+    sessionStorage.setItem('token', '');
 }
