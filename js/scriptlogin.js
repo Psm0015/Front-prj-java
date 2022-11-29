@@ -25,3 +25,15 @@ function login(){
         }
     }
 }
+function ver(){
+    view=document.getElementById("mostrar")
+    senhacamp=document.getElementById("senha")
+    if (view.innerHTML === '<label class="form-check-label" for="form1Example3"><i class="fa-solid fa-eye"></i> Mostrar Senha </label>'){
+        view.innerHTML='<label class="form-check-label" for="form1Example3"><i class="fa-solid fa-eye-slash"></i> Esconder Senha </label>'
+        senhacamp.type = 'text'
+    } else{
+        view.innerHTML='<label class="form-check-label" for="form1Example3"><i class="fa-solid fa-eye"></i> Mostrar Senha </label>'
+        senhacamp.type = 'password'
+    }
+    
+}
