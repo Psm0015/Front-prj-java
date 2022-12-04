@@ -17,6 +17,7 @@ function listar(){
                 txt += "<tr><td>"+i.login+"</td>"
                 txt += "<td>"+i.nome+"</td>"
                 txt += "<td>"+i.email+" </td>"
+                txt += "<td>"+i.enabled+" </td>"
                 txt += "<td><input type='button' value='Editar' onclick='editar("+u+")' class='btn btn-success' data-bs-toggle='modal' data-bs-target='#modaleditar'>   "
                 txt += "<input type='button' value='Apagar' onclick='apagar("+u+")' class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#modalapagar'></td></tr>"
         
@@ -63,7 +64,7 @@ function editarconfirm(){
     useradd.nome = document.getElementById("nomeed").value;
     useradd.email = document.getElementById("emailed").value;
     useradd.password = document.getElementById("edsenha").value;
-    ajax.open("POST","http://localhost:8080/api/usuario/");
+    ajax.open("PUT","http://localhost:8080/api/usuario/editar");
     ajax.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     ajax.setRequestHeader("Authorization", "Bearer "+token);
     ajax.send(JSON.stringify(useradd));

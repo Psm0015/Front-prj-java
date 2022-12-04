@@ -40,6 +40,7 @@
               <th>LOGIN:</th>
               <th>NOME:</th>
               <th>EMAIL:</th>
+              <th>ATIVO:</th>
               <th><input type="button" value="+" class="btn btn-info" data-bs-toggle='modal' data-bs-target='#modalnovo'></th>
           </tr>
           <tbody id="ListaUsers">
@@ -115,40 +116,6 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
               <input type="button" value="Apagar" onclick="apagarconfirm()" class="btn btn-primary" data-bs-dismiss="modal">
-            </div>
-      
-          </div>
-        </div>
-  </div>
-  <div class="modal" id="modalnovo">
-        <!--MODAL DE NOVO-->
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-      
-            <div class="modal-header">
-              <h4 class="modal-title">Novo Usuário</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-      
-            <div class="modal-body">
-
-                <label for="addlogin">Login:</label>
-                <input class="form-control" type="text" placeholder="Seu Login" id="addlogin">
-
-                <label for="addnome">Nome:</label>
-                <input class="form-control" type="text" placeholder="Seu Nome" id="addnome">
-        
-                <label for="addemail">Email:</label>
-                <input class="form-control" type="text" placeholder="email@dominio.com" id="addemail">
-        
-                <label for="addsenha">Senha:</label>
-                <input class="form-control" type="password" placeholder="Sua senha" id="addsenha"> <div id="veraddsenha" onclick="ver('addsenha')"><i class="fa-solid fa-eye"></i></div><br>
-
-            </div>
-      
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
-              <input type="button" value="Adicionar" onclick="cadastrar()" class="btn btn-primary" data-bs-dismiss="modal">
             </div>
       
           </div>

@@ -1,8 +1,8 @@
 ajax = new XMLHttpRequest();
-function login(){
+function logar(){
     usuario=document.getElementById("login").value;
     senha=document.getElementById("senha").value;
-    const login = JSON.stringify({
+    const ususenh = JSON.stringify({
         "login": usuario,
         "password": senha
     });
@@ -10,7 +10,7 @@ function login(){
     ajax.open("POST", "http://localhost:8080/login");
     ajax.setRequestHeader("Content-Type", "application/json");
 
-    ajax.send(login);
+    ajax.send(ususenh);
     ajax.onload = function(){
         validacao=document.getElementById("validacao");
         if(this.status == 200){
@@ -18,7 +18,7 @@ function login(){
             validacao.innerHTML = ""
             sessionStorage.setItem('token', this.responseText);
             window.location.href = "usuarios.html";
-        }else if(this.status == 403){
+        }else{
             sessionStorage.setItem('token', '');
             validacao.style = "color: red";
             validacao.innerHTML = "Usuário ou senha incorreto(s)!"
@@ -36,4 +36,72 @@ function ver(){
         senhacamp.type = 'password'
     }
     
+}
+function cadastrar(){
+    valid = true
+    senha = document.getElementById('novasenha').value;
+    csenha = document.getElementById('confsenha').value;
+    login = document.getElementById("novologin").value;
+    email = document.getElementById("novoemail").value;
+    nome = document.getElementById("novonome").value;
+    re = /\S+@\S+\.\S+/;
+    if(login.length>4){
+        document.getElementById("novologin").className = "form-control is-valid";
+        document.getElementById("invalidlg").innerHTML = ""
+    }else{
+        document.getElementById("novologin").className = "form-control is-invalid";
+        document.getElementById("invalidlg").innerHTML = "Login Inválido"
+        valid = false
+    }
+    if(nome.length>4){
+        document.getElementById("novonome").className = "form-control is-valid";
+        document.getElementById("invalidnm").innerHTML = ""
+    }else{
+        document.getElementById("novonome").className = "form-control is-invalid";
+        document.getElementById("invalidnm").innerHTML = "Nome Inválido"
+        valid = false
+    }
+    if (re.test(email)){
+        document.getElementById("novoemail").className = "form-control is-valid";
+        document.getElementById("invalidmail").innerHTML = ""
+    }else{
+        document.getElementById("novoemail").className = "form-control is-invalid";
+        document.getElementById("invalidmail").innerHTML = "Email Inválido"
+        valid = false
+    }
+
+    if(senha === csenha){
+        document.getElementById("novasenha").className = "form-control is-valid";
+        document.getElementById("confsenha").className = "form-control is-valid";
+        document.getElementById("invalidpass").innerHTML = "";
+    }else{
+        document.getElementById("novasenha").className = "form-control is-invalid";
+        document.getElementById("confsenha").className = "form-control is-invalid";
+        document.getElementById("invalidpass").innerHTML = "As senhas não conferem!";
+        valid = false
+    }
+
+    if (valid){
+        document.getElementById('novasenha').disabled=true;
+        document.getElementById('confsenha').disabled=true;
+        document.getElementById("novologin").disabled=true;
+        document.getElementById("novoemail").disabled=true;
+        document.getElementById("novonome").disabled=true;
+        document.getElementById("cadfecha").disabled=true;
+        document.getElementById("cadenvia").innerHTML='<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true">';
+        document.getElementById("cadenvia").disabled=true;
+
+        const cadastro = JSON.stringify({
+            "login": login,
+            "email": email,
+            "nome":nome,
+            "password": senha
+        })
+        ajax.open("POST", "http://localhost:8080/api/usuario/novo");
+        ajax.setRequestHeader("Content-Type", "application/json");
+        ajax.send(cadastro)
+        ajax.onload = function(){
+            window.location.href = "confirmarEmail.html";
+        }
+    }
 }

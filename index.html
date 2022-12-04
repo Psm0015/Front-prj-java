@@ -27,13 +27,14 @@
                   <div class="form-outline mb-4">
                     <input type="password" id="senha" class="form-control form-control-lg" />
                     <label class="form-label" for="senha">Senha</label>
+                    <a class="d-flex justify-content-start" href="" data-bs-toggle='modal' data-bs-target='#modalnovo'>Criar conta</a>
                   </div>
       
                   <div onclick="ver()" id="mostrar" class="form-check d-flex justify-content-start mb-4">
                     <label class="form-check-label" for="form1Example3"><i class="fa-solid fa-eye"></i> Mostrar Senha </label>
                   </div>
       
-                  <button onclick="login()" class="btn btn-primary btn-lg btn-block" type="submit">Entrar</button>
+                  <button onclick="logar()" class="btn btn-primary btn-lg btn-block" type="submit">Entrar</button>
                   <div id="validacao"></div>
       
                 </div>
@@ -51,6 +52,48 @@
         </ul>
         <p class="text-center text-muted">&copy; 2022 Pedro Mota, Student</p>
     </footer>
+    <div class="modal" id="modalnovo">
+        <!--MODAL DE NOVO-->
+        <div class="modal-dialog modal-sm">
+          <div class="modal-content">
+      
+            <div class="modal-header">
+              <h4 class="modal-title">Novo Usuário</h4>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+      
+            <div class="modal-body">
+
+                <label for="novologin">Login:</label>
+                <input class="form-control" type="text" placeholder="Seu Login" id="novologin">
+                <div class="invalid-feedback" id="invalidlg"></div>
+
+                <label for="novonome">Nome:</label>
+                <input class="form-control" type="text" placeholder="Seu Nome" id="novonome">
+                <div class="invalid-feedback" id="invalidnm"></div>
+        
+                <label for="novoemail">Email:</label>
+                <input class="form-control" type="text" placeholder="email@dominio.com" id="novoemail">
+                <div class="invalid-feedback" id="invalidmail"></div>
+        
+                <label for="novasenha">Senha:</label>
+                <input class="form-control" type="password" placeholder="Sua senha" id="novasenha"> 
+
+                <label for="confsenha">Confirmar Senha:</label>
+                <input class="form-control" type="password" placeholder="Confirmar senha" id="confsenha">
+                <div class="invalid-feedback" id="invalidpass"></div><br>
+                
+            </div>
+      
+            <div class="modal-footer">
+              <button id="cadfecha" type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+              <button id="cadenvia" type="button" onclick="cadastrar()" class="btn btn-primary">Cadastrar</button>
+              <!-- data-bs-dismiss="modal" -->
+            </div>
+      
+          </div>
+        </div>
+    </div>
 </body>
 <script src="js/scriptlogin.js"></script>
 <script src="https://kit.fontawesome.com/658c970e09.js" crossorigin="anonymous"></script>
