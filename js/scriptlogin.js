@@ -42,10 +42,9 @@ function cadastrar(){
     senha = document.getElementById('novasenha').value;
     csenha = document.getElementById('confsenha').value;
     login = document.getElementById("novologin").value;
-    email = document.getElementById("novoemail").value;
     nome = document.getElementById("novonome").value;
     re = /\S+@\S+\.\S+/;
-    if(login.length>4){
+    if(re.test(login)){
         document.getElementById("novologin").className = "form-control is-valid";
         document.getElementById("invalidlg").innerHTML = ""
     }else{
@@ -59,14 +58,6 @@ function cadastrar(){
     }else{
         document.getElementById("novonome").className = "form-control is-invalid";
         document.getElementById("invalidnm").innerHTML = "Nome Inválido"
-        valid = false
-    }
-    if (re.test(email)){
-        document.getElementById("novoemail").className = "form-control is-valid";
-        document.getElementById("invalidmail").innerHTML = ""
-    }else{
-        document.getElementById("novoemail").className = "form-control is-invalid";
-        document.getElementById("invalidmail").innerHTML = "Email Inválido"
         valid = false
     }
 
@@ -85,7 +76,6 @@ function cadastrar(){
         document.getElementById('novasenha').disabled=true;
         document.getElementById('confsenha').disabled=true;
         document.getElementById("novologin").disabled=true;
-        document.getElementById("novoemail").disabled=true;
         document.getElementById("novonome").disabled=true;
         document.getElementById("cadfecha").disabled=true;
         document.getElementById("cadenvia").innerHTML='<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true">';
@@ -93,7 +83,6 @@ function cadastrar(){
 
         const cadastro = JSON.stringify({
             "login": login,
-            "email": email,
             "nome":nome,
             "password": senha
         })
