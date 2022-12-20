@@ -4,98 +4,167 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/Style.css">
+    <title>PedroLoja</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-    <title>Login</title>
+    <link rel="stylesheet" href="css/sidenav.css">
+    <link rel="stylesheet" href="css/Style.css">
+    <link rel="stylesheet" href="css/slidestyle.css">
 </head>
 <body>
-    <section>
-        <div class="container py-5 h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
-              <div class="card shadow-2-strong" style="border-radius: 1rem;">
-                <div class="card-body p-5 text-center">
-      
-                  <h3 class="mb-5">Login</h3>
-      
-                  <div class="form-outline mb-4">
-                    <input type="email" id="login" class="form-control form-control-lg" />
-                    <label class="form-label" for="login">Usuario</label>
-                  </div>
-      
-                  <div class="form-outline mb-4">
-                    <input type="password" id="senha" class="form-control form-control-lg" />
-                    <label class="form-label" for="senha">Senha</label>
-                    <a class="d-flex justify-content-start" href="" data-bs-toggle='modal' data-bs-target='#modalnovo'>Criar conta</a>
-                  </div>
-      
-                  <div onclick="ver()" id="mostrar" class="form-check d-flex justify-content-start mb-4">
-                    <label class="form-check-label" for="form1Example3"><i class="fa-solid fa-eye"></i> Mostrar Senha </label>
-                  </div>
-      
-                  <button onclick="logar()" class="btn btn-primary btn-lg btn-block" type="submit">Entrar</button>
-                  <div id="validacao"></div>
-      
-                </div>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <p id="Titulo" onclick="window.location.replace('login.html');">Olá, Faça seu Login</p>
+        <a href="#">
+            <i class="fa-solid fa-user"></i>
+            Minha Conta
+        </a>
+        <a href="#">
+            <i class="fa-solid fa-cart-shopping"></i>
+            Meu Carrinho
+        </a>
+        <a href="#">
+            <i class="fa-sharp fa-solid fa-basket-shopping"></i>
+            Meus Pedidos
+        </a>
+        <a href="#">
+            <i class="fa-solid fa-phone"></i>
+            Fale Conosco
+        </a>
+    </div>
+
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <div class="container-fluid">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="fa-solid fa-bars nav-link" onclick="openNav()" ></a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a id="NomeLoja" href="loja.html">PEDRO MOTA</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a onclick="sair()" class="nav-link" href="index.html">Sair</a>
+              </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="img/Promo hora.png" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="img/Promo Natal.png" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img src="img/Promo Virada.png" class="d-block w-100" alt="...">
+            </div>
+        </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <br>
+        <div class="card-group">
+            <div class="card">
+              <img class="card-img-top" src="img/g403-img01_1.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Mouse Gamer</h5>
+                <p class="card-text">Logitech G403 HERO com RGB LIGHTSYNC, 6 Botões Programáveis, Ajuste de Peso e Sensor HERO 25K.</p>
+                <p class="card-text"><h6 class="text" style="color: rgb(78, 78, 255);">R$ 179,99</h6></p>
               </div>
             </div>
-          </div>
+            <div class="card">
+              <img class="card-img-top" src="img/g512.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Teclado Mecânico Gamer</h5>
+                <p class="card-text">Logitech G512 Carbon com Layout ABNT2, RGB LIGHTSYNC, USB Passthrough, Switch Exclusivo GX Brown .</p>
+                <p class="card-text"><h6 class="text" style="color: rgb(78, 78, 255);">R$ 549,99</h6></p>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="img/hs50.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Headset</h5>
+                <p class="card-text">Corsair, Hs50 Pro Gaming Carbono, P2, 50mm</p>
+                <p class="card-text"><h6 class="text" style="color: rgb(78, 78, 255);">R$ 441,36</h6></p>
+              </div>
+            </div>
         </div>
-      </section>
+        <div class="card-group">
+            <div class="card">
+                <img class="card-img-top" src="img/hs50.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Headset</h5>
+                  <p class="card-text">Corsair, Hs50 Pro Gaming Carbono, P2, 50mm</p>
+                  <p class="card-text"><h6 class="text" style="color: rgb(78, 78, 255);">R$ 441,36</h6></p>
+                </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="img/g403-img01_1.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Mouse Gamer</h5>
+                <p class="card-text">Logitech G403 HERO com RGB LIGHTSYNC, 6 Botões Programáveis, Ajuste de Peso e Sensor HERO 25K.</p>
+                <p class="card-text"><h6 class="text" style="color: rgb(78, 78, 255);">R$ 179,99</h6></p>
+              </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="img/g512.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Teclado Mecânico Gamer</h5>
+                <p class="card-text">Logitech G512 Carbon com Layout ABNT2, RGB LIGHTSYNC, USB Passthrough, Switch Exclusivo GX Brown .</p>
+                <p class="card-text"><h6 class="text" style="color: rgb(78, 78, 255);">R$ 549,99</h6></p>
+              </div>
+            </div>
+        </div>
+        <div class="card-group">
+            <div class="card">
+                <img class="card-img-top" src="img/g512.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Teclado Mecânico Gamer</h5>
+                  <p class="card-text">Logitech G512 Carbon com Layout ABNT2, RGB LIGHTSYNC, USB Passthrough, Switch Exclusivo GX Brown .</p>
+                  <p class="card-text"><h6 class="text" style="color: rgb(78, 78, 255);">R$ 549,99</h6></p>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="img/hs50.png" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title">Headset</h5>
+                  <p class="card-text">Corsair, Hs50 Pro Gaming Carbono, P2, 50mm</p>
+                  <p class="card-text"><h6 class="text" style="color: rgb(78, 78, 255);">R$ 441,36</h6></p>
+                </div>
+            </div>
+            <div class="card">
+              <img class="card-img-top" src="img/g403-img01_1.png" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">Mouse Gamer</h5>
+                <p class="card-text">Logitech G403 HERO com RGB LIGHTSYNC, 6 Botões Programáveis, Ajuste de Peso e Sensor HERO 25K.</p>
+                <p class="card-text"><h6 class="text" style="color: rgb(78, 78, 255);">R$ 179,99</h6></p>
+              </div>
+            </div>
+        </div>
     <footer class="py-3 my-4">
         <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-          <li class="nav-item"><a href="https://www.instagram.com/peedroomota/" class="nav-link px-2 text-muted" target="_blank"><i class="fa fa-instagram fa-2xl" aria-hidden="true"></i></a></li>
-          <li class="nav-item"><a href="https://github.com/Psm0015" class="nav-link px-2 text-muted" target="_blank"><i class="fa-brands fa-github fa-2xl"></i></a></li>
-          <li class="nav-item"><a href="https://wa.me/5561999766526" class="nav-link px-2 text-muted" target="_blank"><i class="fa-brands fa-whatsapp fa-2xl"></i></a></li>
-          <li class="nav-item"><a href="https://www.linkedin.com/in/pedro-santos-da-mota-235314222/" class="nav-link px-2 text-muted" target="_blank"><i class="fa-brands fa-linkedin fa-2xl"></i></a></li>
+            <li class="nav-item"><a href="https://www.instagram.com/peedroomota/" class="nav-link px-2 text-muted" target="_blank"><i class="fa fa-instagram fa-2xl" aria-hidden="true"></i></a></li>
+            <li class="nav-item"><a href="https://github.com/Psm0015" class="nav-link px-2 text-muted" target="_blank"><i class="fa-brands fa-github fa-2xl"></i></a></li>
+            <li class="nav-item"><a href="https://wa.me/5561999766526" class="nav-link px-2 text-muted" target="_blank"><i class="fa-brands fa-whatsapp fa-2xl"></i></a></li>
+            <li class="nav-item"><a href="https://www.linkedin.com/in/pedro-santos-da-mota-235314222/" class="nav-link px-2 text-muted" target="_blank"><i class="fa-brands fa-linkedin fa-2xl"></i></a></li>
         </ul>
         <p class="text-center text-muted">&copy; 2022 Pedro Mota, Student</p>
     </footer>
-    <div class="modal" id="modalnovo">
-        <!--MODAL DE NOVO-->
-        <div class="modal-dialog modal-sm">
-          <div class="modal-content">
-      
-            <div class="modal-header">
-              <h4 class="modal-title">Novo Usuário</h4>
-              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-      
-            <div class="modal-body">
-
-                <label for="novologin">Login:</label>
-                <input class="form-control" type="text" placeholder="Seu Login" id="novologin">
-                <div class="invalid-feedback" id="invalidlg"></div>
-
-                <label for="novonome">Nome:</label>
-                <input class="form-control" type="text" placeholder="Seu Nome" id="novonome">
-                <div class="invalid-feedback" id="invalidnm"></div>
-        
-                <!-- <label for="novoemail">Email:</label>
-                <input class="form-control" type="text" placeholder="email@dominio.com" id="novoemail">
-                <div class="invalid-feedback" id="invalidmail"></div> -->
-        
-                <label for="novasenha">Senha:</label>
-                <input class="form-control" type="password" placeholder="Sua senha" id="novasenha"> 
-
-                <label for="confsenha">Confirmar Senha:</label>
-                <input class="form-control" type="password" placeholder="Confirmar senha" id="confsenha">
-                <div class="invalid-feedback" id="invalidpass"></div><br>
-                
-            </div>
-      
-            <div class="modal-footer">
-              <button id="cadfecha" type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
-              <button id="cadenvia" type="button" onclick="cadastrar()" class="btn btn-primary">Cadastrar</button>
-              <!-- data-bs-dismiss="modal" -->
-            </div>
-      
-          </div>
-        </div>
-    </div>
 </body>
-<script src="js/scriptlogin.js"></script>
+<script src="js/scriptslide.js"></script>
 <script src="https://kit.fontawesome.com/658c970e09.js" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/sidenav.js"></script>
 </html>
